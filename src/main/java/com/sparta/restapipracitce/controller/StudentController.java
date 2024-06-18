@@ -1,8 +1,10 @@
 package com.sparta.restapipracitce.controller;
 
+import com.sparta.restapipracitce.dto.ExamRequestDto;
+import com.sparta.restapipracitce.dto.ExamResponseDto;
 import com.sparta.restapipracitce.dto.StudentRequestDto;
 import com.sparta.restapipracitce.dto.StudentResponseDto;
-import com.sparta.restapipracitce.entity.Student;
+import com.sparta.restapipracitce.service.ExamService;
 import com.sparta.restapipracitce.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,11 @@ public class StudentController {
 
 //    private final StudentMap studentMap;
     private final StudentService studentService;
+    private final ExamService examService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, ExamService examService) {
         this.studentService = studentService;
+        this.examService = examService;
     }
 
     // 학생 등록
@@ -29,6 +33,11 @@ public class StudentController {
         return studentService.getStudentForId(id);
     }
 
+    // id 기반 학생에 시험과목과 시험일자 추가
+    @PostMapping("/{id}/exam")
+    public ExamResponseDto addExam(@PathVariable Long id,@RequestBody ExamRequestDto requestDto) {
+        return examService.addExam(id,requestDto);
+    }
 
 
 

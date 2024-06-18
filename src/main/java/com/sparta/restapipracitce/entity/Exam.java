@@ -1,9 +1,7 @@
 package com.sparta.restapipracitce.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.sparta.restapipracitce.dto.ExamRequestDto;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -16,15 +14,25 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 고유번호
 
-    private Long studentId; // 학생 아이디
-
     private Float score; // 점수
 
+    @Enumerated(EnumType.STRING)
     private Subject subject; // 과목타입
 
-    private LocalDateTime localDateTime; // 시험일
+    private LocalDateTime examDate; // 시험일
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     public Exam() {
 
+    }
+
+    public Exam(ExamRequestDto requestDto, Student student) {
+        this.score = requestDto.getScore();
+        this.subject = requestDto.getSubject();
+        this.examDate = LocalDateTime.now();
+        this.student = student;
     }
 }
