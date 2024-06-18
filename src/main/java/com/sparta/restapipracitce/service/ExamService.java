@@ -34,4 +34,10 @@ public class ExamService {
         return new ExamResponseDto(saveExam);
     }
 
+    public ExamResponseDto getExam(Long studentId, Subject subject) {
+        Exam exam = examRepository.findByStudent_IdAndSubject(studentId,subject).orElseThrow(()
+                -> new IllegalArgumentException("요청하신 학생의 요청하신 과목에 대한 시험이 없습니다."));
+        return new ExamResponseDto(exam);
+    }
+
 }

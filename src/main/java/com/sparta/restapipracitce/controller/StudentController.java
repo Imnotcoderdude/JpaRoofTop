@@ -4,6 +4,7 @@ import com.sparta.restapipracitce.dto.ExamRequestDto;
 import com.sparta.restapipracitce.dto.ExamResponseDto;
 import com.sparta.restapipracitce.dto.StudentRequestDto;
 import com.sparta.restapipracitce.dto.StudentResponseDto;
+import com.sparta.restapipracitce.entity.Subject;
 import com.sparta.restapipracitce.service.ExamService;
 import com.sparta.restapipracitce.service.StudentService;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,12 @@ public class StudentController {
     public ExamResponseDto addExam(@PathVariable Long id,@RequestBody ExamRequestDto requestDto) {
         return examService.addExam(id,requestDto);
     }
+
+    // 등록한 학생의 과목타입과 과목시험을 조회한다.
+   @GetMapping("/exam/{studentId}/{subject}")
+    public ExamResponseDto getExam(@PathVariable Long studentId, @PathVariable Subject subject) {
+        return examService.getExam(studentId, subject);
+   }
 
 
 
