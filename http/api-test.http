@@ -1,0 +1,56 @@
+## 학생 등록 테스트
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "id": 1,
+  "studentNumber": "20202020",
+  "name": "조규성",
+  "email": "asdasd@asd.add"
+}
+###
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+"id": 2,
+"studentNumber": "30303030",
+"name": "조규성",
+"email": "asdasd@asd.add"
+}
+
+###
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "id": 4,
+  "studentNumber": "40404040",
+  "name": "조규성",
+  "email": "asdasd@asd.add"
+}
+
+###
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "id": 5,
+  "studentNumber": "50505050",
+  "name": "조규성",
+  "email": "asdasd@asd.add"
+}
+
+
+
+### 학생 조회 테스트
+GET http://localhost:8080/students/1
+
+
+
+### 학생 전체 조회 테스트
+GET http://localhost:8080/students
+
+
+### 학생 학번으로 조회 테스트
+GET http://localhost:8080/students?number=30303030
