@@ -23,4 +23,10 @@ public class StudentService {
 
         return new StudentResponseDto(addStudent);
     }
+
+    public StudentResponseDto getStudentForId(Long id) {
+        Student student = studentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 학생이 없습니다."));
+
+        return new StudentResponseDto(student);
+    }
 }

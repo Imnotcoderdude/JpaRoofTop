@@ -17,9 +17,16 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    // 학생 등록
     @PostMapping("/signup")
     public StudentResponseDto addStudent(@RequestBody StudentRequestDto requestDto) {
         return studentService.addStudent(requestDto);
+    }
+
+    // id 기반 학생 조회
+    @GetMapping("/{id}")
+    public StudentResponseDto getStudentForId(@PathVariable Long id) {
+        return studentService.getStudentForId(id);
     }
 
 
